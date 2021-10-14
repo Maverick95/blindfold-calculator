@@ -1,0 +1,34 @@
+.main-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.main-instructions {
+  flex: 1 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-instructions-content {
+  text-align: center;
+  margin: 0 50px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.main-calculator {
+  flex: 3 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-calculator-content {
+  flex-grow: 1;
+}
+
+.section-header {
+  text-align: center;
+  color: #ff4400;
+}

@@ -5,8 +5,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import './LanguageSelector/LanguageSelector.css';
 import LanguageSelector from './LanguageSelector/LanguageSelector.js';
 
-import CalculatorApp from './Calculator/CalculatorApp.js';
-import CALCULATOR_APP_HOOK from './Calculator/CalculatorApp_Hook.js';
+import CALCULATOR_APP_ACCESSIBLE_HOOK from './CalculatorAccessible/CalculatorAppAccessible_Hook';
 
 import {Hoc1, Hoc2} from './HocTest/Hoc.js';
 import {HocComponent1, HocComponent2} from './HocTest/HocComponent.js';
@@ -29,13 +28,9 @@ ReactDOM.render(
         <LanguageSelector />
       </Route>
 
-      <Route path="/CalculatorApp">
-          <CalculatorApp />
-        </Route>
-
-        <Route path="/CalculatorApp_Hook">
-          <CALCULATOR_APP_HOOK />
-        </Route>
+      <Route path="/CalculatorAppAccessible_Hook">
+        <CALCULATOR_APP_ACCESSIBLE_HOOK />
+      </Route>
 
       <Route path="/Hoc">
         <p>Button Type 1 will not update when clicked.</p>
