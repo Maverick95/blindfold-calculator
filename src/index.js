@@ -20,7 +20,9 @@ import MathExam from './MathExam/MathExam.js';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
+  /*
   <React.StrictMode>
+    
     <Router>
     <Switch>
 
@@ -55,12 +57,15 @@ ReactDOM.render(
         </Route>
 
         <Route path="/MathExam">
+          
+      */
           <MathExam />
+        /*
         </Route>
 
     </Switch>
     </Router>
-  </React.StrictMode>,
+  </React.StrictMode>*/,
   document.getElementById('root')
 );
 
