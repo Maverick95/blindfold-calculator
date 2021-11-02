@@ -1,23 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-
-import './LanguageSelector/LanguageSelector.css';
-import LanguageSelector from './LanguageSelector/LanguageSelector.js';
 
 import CALCULATOR_APP_ACCESSIBLE_HOOK from './CalculatorAccessible/CalculatorAppAccessible_Hook';
 
-import {Hoc1, Hoc2} from './HocTest/Hoc.js';
-import {HocComponent1, HocComponent2} from './HocTest/HocComponent.js';
-
-import {IntModifier, SimpleDisplay, SimpleDisplay2} from './IntModifier/IntModifierComponents.js';
-
-import {ErrorBoundary} from './ErrorBoundary/ErrorBoundary.js';
-import {ErrorBoundaryChild} from './ErrorBoundary/ErrorBoundaryChild.js';
-
 import MathExam from './MathExam/MathExam.js';
-
-import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   /*
@@ -66,10 +52,6 @@ ReactDOM.render(
     </Switch>
     </Router>
   </React.StrictMode>*/,
-  document.getElementById('root')
+  document.body
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

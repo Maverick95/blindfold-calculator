@@ -1,21 +1,14 @@
 {
-  "name": "test-create-react-app",
+  "name": "blindfold-calculator",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-scripts": "4.0.1",
-    "web-vitals": "^0.2.4",
-    "equation-stack": "git://github.com/Maverick95/equation-stack.git",
-    "react-router-dom": "^5.2.0"
+    "equation-stack": "git://github.com/Maverick95/equation-stack.git"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "@testing-library/cypress": "^7.0.3",
-    "cypress": "6.2.0",
+    "acorn": "^8.5.0",
     "webpack": "^5.60.0",
     "webpack-cli": "^4.9.1",
     "babel-loader": "^8.2.3",
@@ -23,31 +16,10 @@
     "style-loader": "^3.3.1",
     "@babel/core": "^7.15.8",
     "@babel/preset-react": "^7.14.5",
-    "@babel/preset-typescript": "^7.15.0"
+    "@babel/preset-typescript": "^7.15.0",
+    "html-webpack-plugin": "^5.5.0"
   },
   "scripts": {
-    "webpack": "webpack-cli build",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "build": "webpack-cli build"
   }
 }
