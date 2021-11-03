@@ -1,8 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import CalculatorAppAccessible_Hook from './CalculatorAccessible/CalculatorAppAccessible_Hook';
 
-import CALCULATOR_APP_ACCESSIBLE_HOOK from './CalculatorAccessible/CalculatorAppAccessible_Hook';
-
-import MathExam from './MathExam/MathExam.js';
-
-ReactDOM.render(<CALCULATOR_APP_ACCESSIBLE_HOOK />, document.body);
+ReactDOM.render(<CalculatorAppAccessible_Hook />, document.body);
