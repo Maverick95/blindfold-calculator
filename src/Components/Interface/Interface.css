@@ -1,3 +1,8 @@
+.main-calculator {
+  display: flex;
+  flex-direction: column;
+}
+
 .calculator-grid {
   flex-grow: 1;
   display: flex;

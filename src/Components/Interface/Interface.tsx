@@ -1,5 +1,5 @@
 import React from 'react';
-import './CalculatorAccessible.css';
+import './Interface.css';
 
 const sectionAriaLabel = (value, valid) => `Enter ${value}${
     valid ? '' : ', These Are Currently Disabled'}`;
@@ -7,7 +7,7 @@ const sectionAriaLabel = (value, valid) => `Enter ${value}${
 const buttonAriaLabel = (value, valid) => `${value}${
     valid ? '' : ', Disabled'}`;
 
-export default function CALCULATOR_ACCESSIBLE_HOOK(props) {
+const InterfaceComponent = (props) => {
 
     const inputNumberClasses = `calc-btn${props.number ? '' : ' calc-btn-disabled'}`;
     const operatorClasses = `calc-btn calc-btn-op${props.operation ? '' : '-disabled'}`;
@@ -33,7 +33,7 @@ export default function CALCULATOR_ACCESSIBLE_HOOK(props) {
         if (value === 0) {
             inputProps = {
                 ...inputProps,
-                id: 'buttons-numbers',
+                //id: 'buttons-numbers',
             };
         }
 
@@ -41,12 +41,12 @@ export default function CALCULATOR_ACCESSIBLE_HOOK(props) {
     }
 
     return (
+      <div className="main-calculator">
       <div className="calculator-grid">
         <section aria-labelledBy="numbers" className="calculator-numbers">
           <h2 aria-label={sectionAriaLabel('Number', props.number)} id="numbers" className="section-header">Numbers</h2>
           <div className="calculator-numbers-content">
             <div className="calculator-numbers-column">
-
               {getInputNumber(0)}
               {getInputNumber(1)}
               {getInputNumber(2)}
@@ -105,6 +105,9 @@ export default function CALCULATOR_ACCESSIBLE_HOOK(props) {
         </div>
         </section>
       </div>
+      </div>
     );
 
-}
+};
+
+export default InterfaceComponent;

@@ -1,5 +1,5 @@
 import React from 'react';
-import './CalculatorOutputAccessible.css';
+import './Output.css';
 
 const transformEquationToEnglish = x => {
     var x_return = x.replaceAll('+', 'Plus');
@@ -7,9 +7,9 @@ const transformEquationToEnglish = x => {
     x_return = x_return.replaceAll('(', 'Open Bracket');
     x_return = x_return.replaceAll(')', 'Close Bracket');
     return x_return;
-}
+};
 
-export default function CalculatorAccessibleOutput(props) {
+const OutputComponent = (props) => {
 
     const sectionAriaLabel = `Results${
         props.valid ? '' : ', There Is Currently No Result'}`;
@@ -36,4 +36,6 @@ export default function CalculatorAccessibleOutput(props) {
         </div>
     );
 
-}
+};
+
+export default OutputComponent;

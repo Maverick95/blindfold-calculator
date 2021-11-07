@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import CalculatorAppAccessible_Hook from './CalculatorAccessible/CalculatorAppAccessible_Hook';
+import Calculator from './Components/Calculator/Calculator.tsx';
 
-ReactDOM.render(<CalculatorAppAccessible_Hook />, document.body);
+ReactDOM.render(<Calculator />, document.body);
