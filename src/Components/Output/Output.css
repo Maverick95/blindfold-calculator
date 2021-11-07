@@ -11,12 +11,12 @@
 }
 
 
-.calculator-output-row > h1,
-.calculator-output-row > h2,
-.calculator-output-row > h3,
-.calculator-output-row > h4,
-.calculator-output-row > h5,
-.calculator-output-row > h6
+.calculator-output-row h1,
+.calculator-output-row h2,
+.calculator-output-row h3,
+.calculator-output-row h4,
+.calculator-output-row h5,
+.calculator-output-row h6
 {
   text-align: center;
   align-self: center;
@@ -25,14 +25,14 @@
   padding-right: 10px;
 }
 
-.calculator-output-row > p,
-.calculator-output-row > input
+.calculator-output-row p,
+.calculator-output-row input
 {
   flex: 5 1 0;
 
 }
 
-.calculator-output-row > p
+.calculator-output-row p
 {
   margin-block-start: 0px;
   margin-block-end: 0px;
