@@ -1,0 +1,21 @@
+.main-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.main-instructions-wrapper {
+  flex: 1 1;
+}
+
+.main-calculator-wrapper {
+  flex: 3 1;
+}
+
+.main-calculator-content {
+  flex-grow: 1;
+}
+
+.section-header {
+  text-align: center;
+  color: #ff4400;
+}

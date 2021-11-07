@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-
 import EquationStack from 'equation-stack';
-import CALCULATOR_ACCESSIBLE_HOOK from './CalculatorAccessible_Hook';
-import CalculatorAccessibleOutput from './CalculatorOutputAccessible';
-import './CalculatorAppAccessible.css';
+import Instructions from '../Instructions/Instructions';
+import Interface from '../Interface/Interface';
+import Output from '../Output/Output';
+import './Calculator.css';
 
 const calc_states = {
     STATE_START_FIRST: 1,
@@ -104,21 +104,12 @@ export default function CALCULATOR_APP_ACCESSIBLE_HOOK() {
     return (
         <main>
           <div className="main-content">
-            <section aria-labelledBy="instructions" className="main-instructions">
-              <h2 aria-label="Calculator Instructions" id="instructions" className="section-header">Instructions</h2>
-              <div className="main-instructions-content">
-                <p>Press the Calculator buttons and view your Result.</p>
-                <p>There are 4 key sections.</p>
-                <p><b>Enter Number</b> contains Numbers 0 to 9.</p>
-                <p><b>Enter Operator</b> contains Plus and Multiply.</p>
-                <p><b>Enter Bracket</b> contains Open and Close brackets.</p>
-                <p><b>Results</b> will read your Result in words, give you the Result, and reset the Calculator.</p>
-                <p>Buttons will disable when they cannot be pressed.</p>
-                <p>Good luck!</p>
+            <div className="main-instructions-wrapper">
+                <Instructions />
             </div>
-            </section>
+            <div className="main-calculator-wrapper">
             <div className="main-calculator">
-              <CALCULATOR_ACCESSIBLE_HOOK
+              <Interface
                 number={enabled_number}
                 operation={enabled_operation}
                 bracket-open={enabled_bracket_open}
@@ -126,8 +117,9 @@ export default function CALCULATOR_APP_ACCESSIBLE_HOOK() {
                 press={press}
               />
             </div>
+            </div>
           </div>
-            <CalculatorAccessibleOutput
+            <Output
                 output={state.equation.Output()}
                 valid={state.equation.Valid()}
                 value={state.equation.Value()}
