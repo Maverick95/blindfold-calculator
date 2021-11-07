@@ -2,7 +2,7 @@ const transformEquationToEnglish = (input: string): string => {
 
     const symbolsToWords = new Map([
             ['+', 'Plus'],
-            ['x', 'Multiplied By'],
+            ['x', 'Times'],
             ['(', 'Open Bracket'],
             [')', 'Close Bracket'],
         ]);
