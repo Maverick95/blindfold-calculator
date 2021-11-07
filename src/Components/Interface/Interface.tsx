@@ -7,100 +7,85 @@ const sectionAriaLabel = (value, valid) => `Enter ${value}${
 const buttonAriaLabel = (value, valid) => `${value}${
     valid ? '' : ', Disabled'}`;
 
-const InterfaceComponent = (props) => {
+interface IProps {
+  enableNumbers: boolean,
+  enableOperators: boolean,
+  enableOpenBracket: boolean,
+  enableCloseBracket: boolean,
+  onPress: (value: string | number) => void,
+}
 
-    const inputNumberClasses = `calc-btn${props.number ? '' : ' calc-btn-disabled'}`;
-    const operatorClasses = `calc-btn calc-btn-op${props.operation ? '' : '-disabled'}`;
-    const openBracketClasses = `calc-btn calc-btn-br${props['bracket-open'] ? '' : '-disabled'}`;
-    const closeBracketClasses = `calc-btn calc-btn-br${props['bracket-close'] ? '' : '-disabled'}`;
+const InterfaceComponent: React.FC<IProps> = ({
+  enableNumbers,
+  enableOperators,
+  enableOpenBracket,
+  enableCloseBracket,
+  onPress}) => {
 
-    const generateOnClick = (value, valid) => () => {
-        if (valid) {
-            props.press(value);
-        }
+    const numberClasses = `calc-btn${enableNumbers ? '' : ' calc-btn-disabled'}`;
+    const operatorClasses = `calc-btn calc-btn-op${enableOperators ? '' : '-disabled'}`;
+    const openBracketClasses = `calc-btn calc-btn-br${enableOpenBracket ? '' : '-disabled'}`;
+    const closeBracketClasses = `calc-btn calc-btn-br${enableCloseBracket ? '' : '-disabled'}`;
+
+    const createOnClick = (value, valid) => () => {
+        if (valid) { onPress(value); }
     };
     
-    const getInputNumber = (value) => {
+    const createInput = (
+      classes: string,
+      value: string | number,
+      enabled: boolean,
+      label: string | number = value) => {
 
         var inputProps = {
-            className: inputNumberClasses,
+            className: classes,
             type: 'button',
             value: value,
-            onClick: generateOnClick(value, props.number),
-            'aria-label': buttonAriaLabel(value, props.number),
+            onClick: createOnClick(value, enabled),
+            'aria-label': buttonAriaLabel(label, enabled),
         };
 
-        if (value === 0) {
-            inputProps = {
-                ...inputProps,
-                //id: 'buttons-numbers',
-            };
-        }
-
         return <input {...inputProps} />;
+
     }
 
     return (
       <div className="main-calculator">
       <div className="calculator-grid">
         <section aria-labelledBy="numbers" className="calculator-numbers">
-          <h2 aria-label={sectionAriaLabel('Number', props.number)} id="numbers" className="section-header">Numbers</h2>
+          <h2 aria-label={sectionAriaLabel('Number', enableNumbers)} id="numbers" className="section-header">Numbers</h2>
           <div className="calculator-numbers-content">
             <div className="calculator-numbers-column">
-              {getInputNumber(0)}
-              {getInputNumber(1)}
-              {getInputNumber(2)}
-              {getInputNumber(3)}
-              {getInputNumber(4)}
+              {createInput(numberClasses, 0, enableNumbers)}
+              {createInput(numberClasses, 1, enableNumbers)}
+              {createInput(numberClasses, 2, enableNumbers)}
+              {createInput(numberClasses, 3, enableNumbers)}
+              {createInput(numberClasses, 4, enableNumbers)}
             </div>
             <div className="calculator-numbers-column">
-              {getInputNumber(5)}
-              {getInputNumber(6)}
-              {getInputNumber(7)}
-              {getInputNumber(8)}
-              {getInputNumber(9)}
-
+              {createInput(numberClasses, 5, enableNumbers)}
+              {createInput(numberClasses, 6, enableNumbers)}
+              {createInput(numberClasses, 7, enableNumbers)}
+              {createInput(numberClasses, 8, enableNumbers)}
+              {createInput(numberClasses, 9, enableNumbers)}
             </div>
           </div>
         </section>
         <section aria-labelledBy="operators" className="calculator-operators">
-          <h2 aria-label={sectionAriaLabel('Operator', props.operation)} id="operators" className="section-header">Operators</h2>
+          <h2 aria-label={sectionAriaLabel('Operator', enableOperators)} id="operators" className="section-header">Operators</h2>
           <div className="calculator-numbers-content">
             <div className="calculator-numbers-column">
-            <input id="buttons-operators"
-              className={operatorClasses}
-              type="button"
-              aria-label={buttonAriaLabel('Plus', props.operation)}
-              value="+"
-              onClick={generateOnClick('+', props.operation)}
-            />
-            <input className={operatorClasses}
-              type="button"
-              aria-label={buttonAriaLabel('Multiply', props.operation)}
-              value="x"
-              onClick={generateOnClick('x', props.operation)}
-            />
+              {createInput(operatorClasses, '+', enableOperators, 'Plus')}
+              {createInput(operatorClasses, 'x', enableOperators, 'Times')}
             </div>
           </div>
         </section>
         <section aria-labelledBy="brackets" className="calculator-brackets">
-          <h2 aria-label={sectionAriaLabel('Bracket', props['bracket-open'] || props['bracket-close'])} id="brackets" className="section-header">Brackets</h2>
+          <h2 aria-label={sectionAriaLabel('Bracket', enableOpenBracket || enableCloseBracket)} id="brackets" className="section-header">Brackets</h2>
           <div className="calculator-numbers-content">
             <div className="calculator-numbers-column">
-            <input id="buttons-bracket-open"
-              className={openBracketClasses}
-              type="button"
-              aria-label={buttonAriaLabel('Open Bracket', props['bracket-open'])}
-              value="("
-              onClick={generateOnClick('(', props['bracket-open'])}
-            />
-            <input id="buttons-bracket-close"
-              className={closeBracketClasses}
-              type="button"
-              aria-label={buttonAriaLabel('Close Bracket', props['bracket-close'])}
-              value=")"
-              onClick={generateOnClick(')', props['bracket-close'])}
-            />
+              {createInput(openBracketClasses, '(', enableOpenBracket)}
+              {createInput(closeBracketClasses, ')', enableCloseBracket)}
           </div>
         </div>
         </section>

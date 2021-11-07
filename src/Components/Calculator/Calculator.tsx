@@ -110,11 +110,11 @@ export default function CALCULATOR_APP_ACCESSIBLE_HOOK() {
             <div className="main-calculator-wrapper">
             <div className="main-calculator">
               <Interface
-                number={enabled_number}
-                operation={enabled_operation}
-                bracket-open={enabled_bracket_open}
-                bracket-close={enabled_bracket_close}
-                press={press}
+                enableNumbers={enabled_number}
+                enableOperators={enabled_operation}
+                enableOpenBracket={enabled_bracket_open}
+                enableCloseBracket={enabled_bracket_close}
+                onPress={press}
               />
             </div>
             </div>
