@@ -25,7 +25,6 @@
   },
   "scripts": {
     "build": "webpack-cli build",
-    "serve": "webpack serve",
-    "start": "npm run build && npm run serve"
+    "start": "webpack serve"
   }
 }
