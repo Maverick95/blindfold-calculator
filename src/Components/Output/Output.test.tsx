@@ -1,10 +1,11 @@
+import 'regenerator-runtime/runtime';
 import React from 'react';
-import { findByRole, render } from '@testing-library/react';
+import { findByRole, findByText, render } from '@testing-library/react';
 import OutputComponent from './Output';
 
 describe('Output component', () => {
 
-    it('properly renders all information correctly by section', () => {
+    it('properly renders all information correctly by section', async () => {
 
         const input = {
             output: '6 + 7 + (13 x 7) x 2',
@@ -15,10 +16,8 @@ describe('Output component', () => {
 
         const { container } = render(<OutputComponent {...input} />);
 
-        findByRole(container, 'region', {name: /read your input with maths symbols/i});
-
-
-
+        const sectionSymbols = await findByRole(container, 'region', {name: /read your input with maths symbols/i});
+        await findByText(sectionSymbols, input.output);
 
     });
 
