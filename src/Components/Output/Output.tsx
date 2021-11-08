@@ -6,10 +6,10 @@ interface IProps {
     output: string,
     valid: boolean,
     value: number,
-    reset: () => void,
+    onReset: () => void,
 };
 
-const OutputComponent: React.FC<IProps> = ({ output, valid, value, reset }) => {
+const OutputComponent: React.FC<IProps> = ({ output, valid, value, onReset }) => {
 
     const sectionHeaderResult = `Results${valid ? '' : ', There Is Currently No Result'}`;
     const outputEquation = output || 'No input received';
@@ -34,7 +34,7 @@ const OutputComponent: React.FC<IProps> = ({ output, valid, value, reset }) => {
                 </section>
                 <section aria-labelledby="section-header-reset" style={{ 'flex': '1 1 0', display: 'flex' }}>
                     <h3 id="section-header-reset">Reset</h3>
-                    <input type="button" onClick={reset} value="Click Here to Reset" />
+                    <input type="button" onClick={onReset} value="Click Here to Reset" />
                 </section>
             </div>
         </div>

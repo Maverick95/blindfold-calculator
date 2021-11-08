@@ -12,7 +12,7 @@ describe('Output component', () => {
             output: '6 + 7 + ( 7 x 7 ) x 2',
             valid: true,
             value: 208,
-            reset: () => {}
+            onReset: () => {}
         };
 
         // ACT
@@ -43,7 +43,7 @@ describe('Output component', () => {
             output: null,
             valid: false,
             value: null,
-            reset: () => {}
+            onReset: () => {}
         };
 
         // ACT
