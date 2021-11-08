@@ -1,131 +1,64 @@
-import React, {useState} from 'react';
-import EquationStack from 'equation-stack';
+import React from 'react';
+import { CalculatorState, useCalculator } from '../../Hooks/useCalculator/useCalculator';
 import Instructions from '../Instructions/Instructions';
 import Interface from '../Interface/Interface';
 import Output from '../Output/Output';
 import './Calculator.css';
 
-const calc_states = {
-    STATE_START_FIRST: 1,
-    STATE_INT_PRESSED_FIRST: 2,
-    STATE_END_FIRST: 3,
-    STATE_OP_PRESSED: 4,
-    STATE_INT_PRESSED_OTHER: 5
-};
+const Calculator: React.FC = () => {
 
-const CalculatorAppAccessibleHook = function () {
+    const {
+        current,
+        depth,
+        output,
+        valid,
+        value,
+        onPress,
+        onReset,
+    } = useCalculator();
 
-    const [state, setState] =
-        useState({
-            current: calc_states.STATE_START_FIRST,
-            depth: 0,
-            equation: new EquationStack()
-        });
+    const enableNumbers = [
+        CalculatorState.START_FIRST,
+        CalculatorState.OP_PRESSED
+    ].includes(current);
 
-    return {
-        state: state,
-        press: function (x) {
+    const enableOperators = [
+        CalculatorState.INT_PRESSED_FIRST,
+        CalculatorState.END_FIRST,
+        CalculatorState.INT_PRESSED_OTHER
+    ].includes(current);
 
-            state.equation.Add(x);
+    const enableOpenBracket = [
+        CalculatorState.START_FIRST,
+        CalculatorState.OP_PRESSED
+    ].includes(current);
 
-            setState(prevState => {
-
-                let { current, depth } = prevState;
-
-                switch (x) {
-
-                    case '(':
-                        current = calc_states.STATE_START_FIRST;
-                        depth += 1;
-                        break;
-
-                    case ')':
-                        current = calc_states.STATE_END_FIRST;
-                        depth -= 1;
-                        break;
-
-                    case '+': case 'x':
-                        current = calc_states.STATE_OP_PRESSED;
-                        break;
-
-                    default:
-                        {
-                            switch (current) {
-                                case calc_states.STATE_START_FIRST:
-                                    current = calc_states.STATE_INT_PRESSED_FIRST;
-                                    break;
-                                case calc_states.STATE_OP_PRESSED:
-                                    current = calc_states.STATE_INT_PRESSED_OTHER;
-                                    break;
-                                    default:
-                            }
-                        }
-                }
-
-                return { ...prevState, current, depth, };
-
-            });
-        },
-        reset: function() {
-
-            state.equation.Reset();
-            setState(prevState => ({ ...prevState, current: calc_states.STATE_START_FIRST, depth: 0, }));
-
-        },
-    };
-}
-
-export default function CALCULATOR_APP_ACCESSIBLE_HOOK() {
-
-    const {state, press, reset} = CalculatorAppAccessibleHook();
-
-    const enabled_number = [
-            calc_states.STATE_START_FIRST,
-            calc_states.STATE_OP_PRESSED
-        ].includes(state.current);
-
-    const enabled_operation = [
-            calc_states.STATE_INT_PRESSED_FIRST,
-            calc_states.STATE_END_FIRST,
-            calc_states.STATE_INT_PRESSED_OTHER
-        ].includes(state.current);
-
-
-    const enabled_bracket_open = [
-            calc_states.STATE_START_FIRST,
-            calc_states.STATE_OP_PRESSED
-        ].includes(state.current);
-
-    const enabled_bracket_close = [
-            calc_states.STATE_END_FIRST,
-            calc_states.STATE_INT_PRESSED_OTHER
-         ].includes(state.current) && state.depth > 0;
+    const enableCloseBracket = [
+        CalculatorState.END_FIRST,
+        CalculatorState.INT_PRESSED_OTHER
+    ].includes(current) && depth > 0;
 
     return (
         <main>
-          <div className="main-content">
-            <div className="main-instructions-wrapper">
-                <Instructions />
+            <div className="main-content">
+                <div className="main-instructions-wrapper">
+                    <Instructions />
+                </div>
+                <div className="main-calculator-wrapper">
+                    <div className="main-calculator">
+                        <Interface
+                            {...{
+                                enableNumbers, enableOperators, enableOpenBracket,
+                                enableCloseBracket, onPress,
+                            }} />
+                    </div>
+                </div>
             </div>
-            <div className="main-calculator-wrapper">
-            <div className="main-calculator">
-              <Interface
-                enableNumbers={enabled_number}
-                enableOperators={enabled_operation}
-                enableOpenBracket={enabled_bracket_open}
-                enableCloseBracket={enabled_bracket_close}
-                onPress={press}
-              />
-            </div>
-            </div>
-          </div>
             <Output
-                output={state.equation.Output()}
-                valid={state.equation.Valid()}
-                value={state.equation.Value()}
-                reset={reset} />
-          
+                {...{ output, valid, value, onReset }} />
         </main>
     );
 
-}
+};
+
+export default Calculator;
