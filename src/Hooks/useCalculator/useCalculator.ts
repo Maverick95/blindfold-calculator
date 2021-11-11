@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useCallback, useMemo, useReducer } from 'react';
 import EquationStack from 'equation-stack';
 
 export enum CalculatorState {
@@ -24,59 +24,68 @@ interface IReturnProps {
     onReset: () => void,
 }
 
+const EquationStateReducer = (state: IState, action: string | number): IState => {
+    let { current, depth } = state;
+    switch (action) {
+        case 'RESET':
+            current = CalculatorState.START_FIRST;
+            depth = 0;
+            break;
+        case '(':
+            current = CalculatorState.START_FIRST;
+            depth += 1;
+            break;
+        case ')':
+            current = CalculatorState.END_FIRST;
+            depth -= 1;
+            break;
+        case '+': case 'x':
+            current = CalculatorState.OP_PRESSED;
+            break;
+        default:
+            {
+                switch (current) {
+                    case CalculatorState.START_FIRST:
+                        current = CalculatorState.INT_PRESSED_FIRST;
+                        break;
+                    case CalculatorState.OP_PRESSED:
+                        current = CalculatorState.INT_PRESSED_OTHER;
+                        break;
+                    default:
+                }
+            }
+    }
+    return { current, depth, };
+}
+
 const useCalculator = (): IReturnProps => {
 
-    const [equationStack, setEquationStack] = useState<EquationStack>(new EquationStack());
+    const equationStack: EquationStack = useMemo(() => new EquationStack(), []);
 
-    const [equationState, setEquationState] = useState<IState>({
+    const [equationState, setEquationState] = useReducer(
+        EquationStateReducer,
+        { 
             current: CalculatorState.START_FIRST,
             depth: 0,
         });
+
+    const onPress = useCallback((value: string | number) => {
+        equationStack.Add(value);
+        setEquationState(value);
+    }, [equationStack]);
+
+    const onReset = useCallback(() => {
+        equationStack.Reset();
+        setEquationState('RESET');
+    }, [equationStack]);
 
     return {
         ...equationState,
         output: equationStack.Output(),
         valid: equationStack.Valid(),
         value: equationStack.Value(),
-        onPress: (value) => {
-            equationStack.Add(value);
-            setEquationState((prevState) => {
-                let { current, depth } = prevState;
-                switch (value) {
-                    case '(':
-                        current = CalculatorState.START_FIRST;
-                        depth += 1;
-                        break;
-                    case ')':
-                        current = CalculatorState.END_FIRST;
-                        depth -= 1;
-                        break;
-                    case '+': case 'x':
-                        current = CalculatorState.OP_PRESSED;
-                        break;
-                    default:
-                        {
-                            switch (current) {
-                                case CalculatorState.START_FIRST:
-                                    current = CalculatorState.INT_PRESSED_FIRST;
-                                    break;
-                                case CalculatorState.OP_PRESSED:
-                                    current = CalculatorState.INT_PRESSED_OTHER;
-                                    break;
-                                default:
-                            }
-                        }
-                }
-                return { current, depth, };
-            });
-        },
-        onReset: () => {
-            equationStack.Reset();
-            setEquationState({
-                current: CalculatorState.START_FIRST,
-                depth: 0,
-            });
-        },
+        onPress,
+        onReset,
     };
 };
 

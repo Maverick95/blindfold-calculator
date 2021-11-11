@@ -3,7 +3,7 @@ import './Instructions.css';
 
 const InstructionsComponent = () => (
 
-    <section aria-labelledBy="instructions" className="main-instructions">
+    <section aria-labelledby="instructions" className="main-instructions">
         <h2 aria-label="Calculator Instructions" id="instructions" className="section-header">Instructions</h2>
         <div className="main-instructions-content">
             <p>Press the Calculator buttons and view your Result.</p>
