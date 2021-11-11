@@ -12,6 +12,7 @@
     "@babel/preset-env": "^7.16.0",
     "@babel/preset-react": "^7.14.5",
     "@babel/preset-typescript": "^7.15.0",
+    "@testing-library/cypress": "^8.0.1",
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^12.1.2",
     "@testing-library/react-hooks": "^7.0.2",
@@ -21,10 +22,12 @@
     "babel-jest": "^27.3.1",
     "babel-loader": "^8.2.3",
     "css-loader": " ^6.5.0",
+    "cypress": "^9.0.0",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^27.3.1",
     "regenerator-runtime": "^0.13.9",
     "style-loader": "^3.3.1",
+    "typescript": "^4.4.4",
     "webpack": "^5.60.0",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.4.0"
@@ -32,6 +35,8 @@
   "scripts": {
     "build": "webpack-cli build",
     "start": "webpack serve",
-    "test": "jest"
+    "test": "jest",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
   }
 }
