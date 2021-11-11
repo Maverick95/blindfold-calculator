@@ -45,13 +45,11 @@ const Calculator: React.FC = () => {
                     <Instructions />
                 </div>
                 <div className="main-calculator-wrapper">
-                    <div className="main-calculator">
-                        <Interface
-                            {...{
-                                enableNumbers, enableOperators, enableOpenBracket,
-                                enableCloseBracket, onPress,
-                            }} />
-                    </div>
+                    <Interface
+                        {...{
+                            enableNumbers, enableOperators, enableOpenBracket,
+                            enableCloseBracket, onPress,
+                        }} />
                 </div>
             </div>
             <Output
