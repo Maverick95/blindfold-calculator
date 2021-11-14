@@ -5,7 +5,7 @@ module.exports = {
     resolve: {
         extensions: ['.ts', '.tsx', '.jsx', '...'],
     },
-    mode: 'development',
+    mode: 'production',
     devServer: {
         compress: true,
         port: 9000,
