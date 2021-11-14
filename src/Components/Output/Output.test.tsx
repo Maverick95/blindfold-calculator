@@ -12,7 +12,8 @@ describe('Output component', () => {
             output: '6 + 7 + ( 7 x 7 ) x 2',
             valid: true,
             value: 208,
-            onReset: () => {}
+            lastPressed: 'NONE',
+            onPress: (value: string | number) => {}
         };
 
         // ACT
@@ -43,7 +44,8 @@ describe('Output component', () => {
             output: null,
             valid: false,
             value: null,
-            onReset: () => {}
+            lastPressed: 'NONE',
+            onPress: (value: string | number) => {}
         };
 
         // ACT

@@ -1,15 +1,17 @@
 import React from 'react';
 import './Output.css';
-import { transformEquationToEnglish } from '../../Helpers/Helpers';
+import { transformEquationToEnglish, CalculatorInput } from '../../Helpers/Helpers';
+import { CALCULATOR_ACTION_RESET } from '../../Hooks/useCalculator/useCalculator';
 
 interface IProps {
     output: string,
     valid: boolean,
     value: number,
-    onReset: () => void,
+    lastPressed: string | number,
+    onPress: (value: string | number) => void,
 };
 
-const OutputComponent: React.FC<IProps> = ({ output, valid, value, onReset }) => {
+const OutputComponent: React.FC<IProps> = ({ output, valid, value, lastPressed, onPress }) => {
 
     const sectionHeaderResult = `Results${valid ? '' : ', There Is Currently No Result'}`;
     const outputEquation = output || 'No input received';
@@ -34,7 +36,13 @@ const OutputComponent: React.FC<IProps> = ({ output, valid, value, onReset }) =>
                 </section>
                 <section aria-labelledby="section-header-reset" style={{ 'flex': '1 1 0', display: 'flex' }}>
                     <h3 id="section-header-reset">Reset</h3>
-                    <input type="button" onClick={onReset} value="Click Here to Reset" />
+                    <CalculatorInput
+                        value="Click Here to Reset"
+                        codeValue={CALCULATOR_ACTION_RESET}
+                        codeLastPressed={lastPressed}
+                        enabled
+                        onPress={onPress}
+                    />
                 </section>
             </div>
         </div>

@@ -29,7 +29,7 @@ describe('Calculator component', () => {
 
         // Number
         cy.findByRole('button', {name: /^5$/i}).should('not.exist');
-        cy.findByRole('button', {name: /^5, disabled$/i});
+        cy.findByRole('button', {name: /^5, just pressed, disabled$/i});
 
         // Operator
         cy.findByRole('button', {name: /^plus, disabled$/i}).should('not.exist');
@@ -58,7 +58,7 @@ describe('Calculator component', () => {
 
         // Operator
         cy.findByRole('button', {name: /^plus$/i}).should('not.exist');
-        cy.findByRole('button', {name: /^plus, disabled$/i});
+        cy.findByRole('button', {name: /^plus, just pressed, disabled$/i});
 
         // Brackets
         cy.findByRole('button', {name: /^\(, disabled$/i}).should('not.exist');
@@ -79,7 +79,7 @@ describe('Calculator component', () => {
         cy.findByRole('button', {name: /^5$/i}).click();
         
         // Number
-        cy.findByRole('button', {name: /^5, disabled$/i});
+        cy.findByRole('button', {name: /^5, just pressed, disabled$/i});
         cy.findByRole('button', {name: /^5$/i}).should('not.exist');
 
         // Operator
@@ -116,7 +116,7 @@ describe('Calculator component', () => {
         cy.findByRole('button', {name: /^plus$/i}).click();
         cy.findByRole('button', {name: /^8$/i}).click();
         cy.findByRole('button', {name: /^\)$/i}).click();
-        cy.findByRole('button', {name: /^\)$/i}).click();
+        cy.findByRole('button', {name: /^\), just pressed$/i}).click();
         cy.findByRole('button', {name: /^plus$/i}).click();
         cy.findByRole('button', {name: /^9$/i}).click();
 

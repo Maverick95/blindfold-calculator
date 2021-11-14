@@ -8,13 +8,13 @@ import './Calculator.css';
 const Calculator: React.FC = () => {
 
     const {
+        last: lastPressed,
         current,
         depth,
         output,
         valid,
         value,
         onPress,
-        onReset,
     } = useCalculator();
 
     const enableNumbers = [
@@ -46,14 +46,13 @@ const Calculator: React.FC = () => {
                 </div>
                 <div className="main-calculator-wrapper">
                     <Interface
-                        {...{
-                            enableNumbers, enableOperators, enableOpenBracket,
-                            enableCloseBracket, onPress,
-                        }} />
+                        {...{ enableNumbers, enableOperators, enableOpenBracket,
+                            enableCloseBracket, lastPressed, onPress }}
+                    />
                 </div>
             </div>
             <Output
-                {...{ output, valid, value, onReset }} />
+                {...{ output, valid, value, lastPressed, onPress }} />
         </main>
     );
 
