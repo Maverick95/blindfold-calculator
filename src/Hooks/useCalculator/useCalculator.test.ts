@@ -1,4 +1,4 @@
-import { CalculatorState, useCalculator } from './useCalculator';
+import { CALCULATOR_ACTION_RESET, CalculatorState, useCalculator } from './useCalculator';
 import { act, renderHook } from '@testing-library/react-hooks';
 
 const testInputData = [
@@ -46,7 +46,7 @@ describe('useCalculator hook', () => {
             enterInputAndVerify(i[0], i[1]);
         }
 
-        act(() => { result.current.onReset(); });
+        act(() => { result.current.onPress(CALCULATOR_ACTION_RESET); });
 
         expect(result.current).toEqual(expect.objectContaining({
             current: CalculatorState.START_FIRST,

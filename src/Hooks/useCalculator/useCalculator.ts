@@ -9,25 +9,28 @@ export enum CalculatorState {
     INT_PRESSED_OTHER = "int_pressed_other",
 };
 
+export const CALCULATOR_ACTION_RESET: string = 'RESET';
+
 interface IState {
+    last: string | number,
     current: CalculatorState,
     depth: number,
 };
 
 interface IReturnProps {
+    last: string | number,
     current: CalculatorState,
     depth: number,
     output: string,
     valid: boolean,
     value: number,
     onPress: (value: string | number) => void,
-    onReset: () => void,
 }
 
 const EquationStateReducer = (state: IState, action: string | number): IState => {
     let { current, depth } = state;
     switch (action) {
-        case 'RESET':
+        case CALCULATOR_ACTION_RESET:
             current = CalculatorState.START_FIRST;
             depth = 0;
             break;
@@ -55,7 +58,7 @@ const EquationStateReducer = (state: IState, action: string | number): IState =>
                 }
             }
     }
-    return { current, depth, };
+    return { last: action, current, depth };
 }
 
 const useCalculator = (): IReturnProps => {
@@ -65,18 +68,19 @@ const useCalculator = (): IReturnProps => {
     const [equationState, setEquationState] = useReducer(
         EquationStateReducer,
         { 
+            last: 'NONE',
             current: CalculatorState.START_FIRST,
             depth: 0,
         });
 
     const onPress = useCallback((value: string | number) => {
-        equationStack.Add(value);
+        if (value === CALCULATOR_ACTION_RESET) {
+            equationStack.Reset();
+        }
+        else {
+            equationStack.Add(value);
+        }
         setEquationState(value);
-    }, [equationStack]);
-
-    const onReset = useCallback(() => {
-        equationStack.Reset();
-        setEquationState('RESET');
     }, [equationStack]);
 
     return {
@@ -85,7 +89,6 @@ const useCalculator = (): IReturnProps => {
         valid: equationStack.Valid(),
         value: equationStack.Value(),
         onPress,
-        onReset,
     };
 };
 
