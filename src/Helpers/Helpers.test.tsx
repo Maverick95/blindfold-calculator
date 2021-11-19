@@ -1,4 +1,3 @@
-import { transform } from '@babel/core';
 import { transformEquationToEnglish } from './Helpers';
 
 describe('transformEquationToEnglish', () => {
