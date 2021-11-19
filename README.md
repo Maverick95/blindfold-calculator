@@ -17,8 +17,3 @@ CapsLock + Left/Right
 Moves forwards/backwards through the type of page item, e.g. next or previous landmark
 
 Good luck!
-
-Things I would like to do now are -
-a) update tests for recent commits,
-b) use grid instead of flex,
-d) final clean-up and re-read
