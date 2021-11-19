@@ -1,9 +1,6 @@
 import React from 'react';
 import './Interface.css';
-import { CalculatorInput } from '../../Helpers/Helpers';
-
-const sectionAriaLabel = (value: string, valid: boolean) => `Enter ${value}${
-    valid ? '' : ', These Are Currently Disabled'}`;
+import { SectionContentType, createSectionAriaLabel, CalculatorInput } from '../../Helpers/Helpers';
 
 interface IProps {
   enableNumbers: boolean,
@@ -53,11 +50,15 @@ const InterfaceComponent: React.FC<IProps> = ({
       className: `calc-btn calc-btn-br${enableCloseBracket ? '' : '-disabled'}`
     };
 
+    const labelNumbers = createSectionAriaLabel('Enter Number', SectionContentType.BUTTONS, enableNumbers);
+    const labelOperators = createSectionAriaLabel('Enter Operator', SectionContentType.BUTTONS, enableOperators);
+    const labelBrackets = createSectionAriaLabel('Enter Bracket', SectionContentType.BUTTONS, enableOpenBracket || enableCloseBracket);
+    
     return (
       <div className="main-calculator">
       <div className="calculator-grid">
         <section aria-labelledby="numbers" className="calculator-numbers">
-          <h2 aria-label={sectionAriaLabel('Number', enableNumbers)} id="numbers" className="section-header">Numbers</h2>
+          <h2 aria-label={labelNumbers} id="numbers" className="section-header">Numbers</h2>
           <div className="calculator-numbers-content">
             <div className="calculator-numbers-column">
               <CalculatorInput value={0} {...numberProps} />
@@ -76,7 +77,7 @@ const InterfaceComponent: React.FC<IProps> = ({
           </div>
         </section>
         <section aria-labelledby="operators" className="calculator-operators">
-          <h2 aria-label={sectionAriaLabel('Operator', enableOperators)} id="operators" className="section-header">Operators</h2>
+          <h2 aria-label={labelOperators} id="operators" className="section-header">Operators</h2>
           <div className="calculator-numbers-content">
             <div className="calculator-numbers-column">
               <CalculatorInput value="+" label="Plus" {...operatorProps} />
@@ -85,7 +86,7 @@ const InterfaceComponent: React.FC<IProps> = ({
           </div>
         </section>
         <section aria-labelledby="brackets" className="calculator-brackets">
-          <h2 aria-label={sectionAriaLabel('Bracket', enableOpenBracket || enableCloseBracket)} id="brackets" className="section-header">Brackets</h2>
+          <h2 aria-label={labelBrackets} id="brackets" className="section-header">Brackets</h2>
           <div className="calculator-numbers-content">
             <div className="calculator-numbers-column">
               <CalculatorInput {...openBracketProps} />

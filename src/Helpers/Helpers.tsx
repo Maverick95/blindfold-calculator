@@ -15,6 +15,26 @@ const transformEquationToEnglish = (input: string): string => {
 
 };
 
+export enum SectionContentType {
+    PARAGRAPHS = "Paragraphs",
+    BUTTONS = "Buttons",
+};
+
+const createSectionAriaLabel = (description: string, contentType: SectionContentType, enabled: boolean = true): string => {
+    var result = `${description}, Contains ${contentType}`;
+    if (!enabled) {
+        switch (contentType) {
+            case SectionContentType.BUTTONS:
+                result += ', These Are Currently Disabled';
+                break;
+            case SectionContentType.PARAGRAPHS:
+                result += ', There Is Currently No Content';
+                break;
+        }
+    }
+    return result;
+}
+
 interface IProps {
     value: string | number,
     codeLastPressed: string | number,
@@ -53,5 +73,6 @@ const CalculatorInput: React.FC<IProps> = ({
 
 export {
     transformEquationToEnglish,
+    createSectionAriaLabel,
     CalculatorInput
 };
