@@ -1,17 +1,24 @@
-Windows + Ctrl + Enter to turn Narrator on/off
-CapsLock to tell Narrator to shut up at any time
+See if you use this calculator without looking at the screen!
+This was an exercise in creating accessible content.
 
-CapsLock + PageUp/PageDown changes what you are scanning through. The most useful of these is "landmarks".
-If you ever get lost, cycle through these options until you get to "landmarks", then move forwards/backwards
-again.
+You can use these Windows Narrator controls.
 
-CapsLock + Left Key / Right Key moves forwards / backwards through the type of item
+Windows + Ctrl + Enter
+Turns Narrator on/off
 
-Caps Lock + Ctrl + L to read next paragraph (important for some sections)
-Caps Lock + Ctrl + K to re-read current paragraph (important)
+Caps Lock
+Stops Narrator from talking at any time (very helpful)
+
+CapsLock + PageUp/PageDown
+Changes what type of page item to navigate through.
+For this app, you should need, "landmarks", "paragraphs", "items".
+
+CapsLock + Left/Right
+Moves forwards/backwards through the type of page item, e.g. next or previous landmark
+
+Good luck!
 
 Things I would like to do now are -
 a) update tests for recent commits,
-b) add explanations in sections for how to navigate section (paragraphs, buttons, etc.)
-c) update ReadME to be useful,
+b) use grid instead of flex,
 d) final clean-up and re-read
