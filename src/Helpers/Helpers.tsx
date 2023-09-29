@@ -39,7 +39,7 @@ interface IProps {
     value: string | number,
     codeLastPressed: string | number,
     enabled: boolean,
-    onPress: (value: string | number) => void,
+    onPress: (value: string) => void,
     codeValue?: string | number,
     label?: string | number,
     className?: string,
@@ -62,7 +62,7 @@ const CalculatorInput: React.FC<IProps> = ({
         value,
         className,
         onClick: () => {
-            if (enabled) { onPress(codeValue); }
+            if (enabled) { onPress(codeValue.toString()); }
         },
         'aria-label': ariaLabel,
     };

@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useReducer } from 'react';
-import EquationStack from 'equation-stack';
+import { EquationStack } from 'equation-stack';
 
 export enum CalculatorState {
     START_FIRST = "start_first",
@@ -24,7 +24,7 @@ interface IReturnProps {
     output: string,
     valid: boolean,
     value: number,
-    onPress: (value: string | number) => void,
+    onPress: (value: string) => void,
 }
 
 const EquationStateReducer = (state: IState, action: string | number): IState => {
@@ -73,7 +73,7 @@ const useCalculator = (): IReturnProps => {
             depth: 0,
         });
 
-    const onPress = useCallback((value: string | number) => {
+    const onPress = useCallback((value: string) => {
         if (value === CALCULATOR_ACTION_RESET) {
             equationStack.Reset();
         }

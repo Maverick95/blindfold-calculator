@@ -8,7 +8,7 @@ interface IProps {
     valid: boolean,
     value: number,
     lastPressed: string | number,
-    onPress: (value: string | number) => void,
+    onPress: (value: string) => void,
 };
 
 const OutputComponent: React.FC<IProps> = ({ output, valid, value, lastPressed, onPress }) => {

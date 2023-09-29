@@ -8,7 +8,7 @@ interface IProps {
   enableOpenBracket: boolean,
   enableCloseBracket: boolean,
   lastPressed: string | number,
-  onPress: (value: string | number) => void,
+  onPress: (value: string) => void,
 }
 
 const InterfaceComponent: React.FC<IProps> = ({
